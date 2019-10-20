@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+      {% include 'blog/list-inline.html' with blog_post=object detail=True %}
+
+<div class="col-12 col-md-10 mb-3 mx-auto">
+{% if request.user.is_authenticated %}
+    {% if request.user.is_staff %}
+        <a href="{{ object.get_edit_url }}">Edit</a>
+        <a href="{{ object.get_delete_url }}">Delete</a>
+    {% endif %}
+{% endif %}
+
+       {% include 'comments/view.html' %}
+</div>
+
+{% endblock %}
